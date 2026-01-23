@@ -1,10 +1,10 @@
 from fastapi import FastAPI, Query, HTTPException
 import requests
 
+
 app = FastAPI(title="Prosty F1 Top 10")
 
 BASE = "https://api.openf1.org/v1"
-
 
 @app.get("/results")
 def get_top10_results(
