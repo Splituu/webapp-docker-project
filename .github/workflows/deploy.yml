@@ -1,0 +1,25 @@
+name: Deploy to AWS
+
+on:
+    workflow_dispatch:
+    
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Prepare SSH key
+              env:
+                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                SSH_HOST: ${{ secrets.SSH_HOST }}
+              run: |
+                mkdir -p ~/.ssh
+                printf "%s\n" "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+                chmod 600 ~/.ssh/deploy_key
+                ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+
+            - name: Deploy over SSH
+              env:
+                SSH_USER: ${{ secrets.SSH_USER }}
+                SSH_HOST: ${{ secrets.SSH_HOST }}
+              run: |
+                ssh -i ~/.ssh/deploy_key $SSH_USER@$SSH_HOST "cd /opt/webapp && git pull && docker compose up -d --build"
