@@ -22,4 +22,4 @@ jobs:
                 SSH_USER: ${{ secrets.SSH_USER }}
                 SSH_HOST: ${{ secrets.SSH_HOST }}
               run: |
-                ssh -i ~/.ssh/deploy_key $SSH_USER@$SSH_HOST "cd /opt/webapp && git pull && docker compose up -d --build"
+                ssh -i ~/.ssh/deploy_key $SSH_USER@$SSH_HOST "cd /opt/webapp && sudo git pull && sudo docker compose up -d --build"
