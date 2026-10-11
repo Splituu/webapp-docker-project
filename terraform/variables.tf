@@ -9,8 +9,3 @@ variable "region" {
   type        = string
   default     = "eu-central-1"
 }
-
-variable "my_ip" {
-  description = "IP address of the user"
-  type        = string
-}
