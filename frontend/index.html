@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>F1 2025 – Top 10 kierowców</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
 
-<div class="container">
-  <header>
-    <h1>Formula 1 2025<br><span>Top 10 po wyścigu</span></h1>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Formula 1 2025<br><span>Top 10 po wyścigu</span></h1>
+    </header>
 
-  <div class="select-wrapper">
-    <label for="race-select">Wybierz Grand Prix:</label>
-    <select id="race-select">
-      <option value="">— wybierz wyścig —</option>
+    <div class="select-wrapper">
+      <label for="race-select">Wybierz Grand Prix:</label>
+      <select id="race-select">
+        <option value="">— wybierz wyścig —</option>
 
-      <option value="Australian Grand Prix">1. Australian Grand Prix</option>
-      <option value="Chinese Grand Prix">2. Chinese Grand Prix</option>
-      <option value="Japanese Grand Prix">3. Japanese Grand Prix</option>
-      <option value="Bahrain Grand Prix">4. Bahrain Grand Prix</option>
-      <option value="Saudi Arabian Grand Prix">5. Saudi Arabian Grand Prix</option>
-      <option value="Miami Grand Prix">6. Miami Grand Prix</option>
-      <option value="Emilia Romagna Grand Prix">7. Emilia Romagna Grand Prix</option>
-      <option value="Monaco Grand Prix">8. Monaco Grand Prix</option>
-      <option value="Spanish Grand Prix">9. Spanish Grand Prix</option>
-      <option value="Canadian Grand Prix">10. Canadian Grand Prix</option>
-      <option value="Austrian Grand Prix">11. Austrian Grand Prix</option>
-      <option value="British Grand Prix">12. British Grand Prix</option>
-      <option value="Belgian Grand Prix">13. Belgian Grand Prix</option>
-      <option value="Hungarian Grand Prix">14. Hungarian Grand Prix</option>
-      <option value="Dutch Grand Prix">15. Dutch Grand Prix</option>
-      <option value="Italian Grand Prix">16. Italian Grand Prix</option>
-      <option value="Azerbaijan Grand Prix">17. Azerbaijan Grand Prix</option>
-      <option value="Singapore Grand Prix">18. Singapore Grand Prix</option>
-      <option value="United States Grand Prix">19. United States Grand Prix</option>
-      <option value="Mexican Grand Prix">20. Mexican Grand Prix</option>
-      <option value="São Paulo Grand Prix">21. São Paulo Grand Prix</option>
-      <option value="Las Vegas Grand Prix">22. Las Vegas Grand Prix</option>
-      <option value="Qatar Grand Prix">23. Qatar Grand Prix</option>
-      <option value="Abu Dhabi Grand Prix">24. Abu Dhabi Grand Prix</option>
-    </select>
+        <option value="Australian Grand Prix">1. Australian Grand Prix</option>
+        <option value="Chinese Grand Prix">2. Chinese Grand Prix</option>
+        <option value="Japanese Grand Prix">3. Japanese Grand Prix</option>
+        <option value="Bahrain Grand Prix">4. Bahrain Grand Prix</option>
+        <option value="Saudi Arabian Grand Prix">5. Saudi Arabian Grand Prix</option>
+        <option value="Miami Grand Prix">6. Miami Grand Prix</option>
+        <option value="Emilia Romagna Grand Prix">7. Emilia Romagna Grand Prix</option>
+        <option value="Monaco Grand Prix">8. Monaco Grand Prix</option>
+        <option value="Spanish Grand Prix">9. Spanish Grand Prix</option>
+        <option value="Canadian Grand Prix">10. Canadian Grand Prix</option>
+        <option value="Austrian Grand Prix">11. Austrian Grand Prix</option>
+        <option value="British Grand Prix">12. British Grand Prix</option>
+        <option value="Belgian Grand Prix">13. Belgian Grand Prix</option>
+        <option value="Hungarian Grand Prix">14. Hungarian Grand Prix</option>
+        <option value="Dutch Grand Prix">15. Dutch Grand Prix</option>
+        <option value="Italian Grand Prix">16. Italian Grand Prix</option>
+        <option value="Azerbaijan Grand Prix">17. Azerbaijan Grand Prix</option>
+        <option value="Singapore Grand Prix">18. Singapore Grand Prix</option>
+        <option value="United States Grand Prix">19. United States Grand Prix</option>
+        <option value="Mexican Grand Prix">20. Mexican Grand Prix</option>
+        <option value="São Paulo Grand Prix">21. São Paulo Grand Prix</option>
+        <option value="Las Vegas Grand Prix">22. Las Vegas Grand Prix</option>
+        <option value="Qatar Grand Prix">23. Qatar Grand Prix</option>
+        <option value="Abu Dhabi Grand Prix">24. Abu Dhabi Grand Prix</option>
+      </select>
+    </div>
+
+    <div id="loading" class="status">Ładowanie wyników...</div>
+    <div id="error" class="status error"></div>
+
+    <table id="results-table">
+      <thead>
+        <tr>
+          <th>Pozycja</th>
+          <th>Kierowca</th>
+          <th>Zespół</th>
+        </tr>
+      </thead>
+      <tbody id="results-body"></tbody>
+    </table>
+
+    <footer>
+      Dane z OpenF1 API • Sezon 2025 • Projekt demonstracyjny
+    </footer>
   </div>
 
-  <div id="loading" class="status">Ładowanie wyników...</div>
-  <div id="error" class="status error"></div>
-
-  <table id="results-table">
-    <thead>
-      <tr>
-        <th>Pozycja</th>
-        <th>Kierowca</th>
-        <th>Zespół</th>
-      </tr>
-    </thead>
-    <tbody id="results-body"></tbody>
-  </table>
-
-  <footer>
-    Dane z OpenF1 API • Sezon 2025 • Projekt demonstracyjny
-  </footer>
-</div>
-
-<script src="script.js"></script>
+  <script src="/script.js"></script>
 </body>
+
 </html>

@@ -9,12 +9,17 @@ resource "aws_instance" "webapp" {
 
   user_data = <<-EOF
     #!/bin/bash
+    export DEBIAN_FRONTEND=noninteractive
     echo "Updating apt-get"
-    sudo apt-get update
-    echo "Installing docker.io"
-    sudo apt-get install -y docker.io
-    echo "Running nginx container"
-    sudo docker run -d -p 8080:80 --name webapp nginx:latest
+    apt-get update
+    echo "Installing docker, docker compose and git"
+    apt-get install -y docker.io docker-compose-v2 git
+    systemctl enable --now docker
+    echo "Cloning repository"
+    git clone https://github.com/Splituu/webapp-docker-project.git /opt/webapp
+    cd /opt/webapp
+    echo "Starting application"
+    docker compose up -d --build
   EOF
 }
 

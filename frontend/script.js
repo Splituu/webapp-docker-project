@@ -53,7 +53,18 @@ select.addEventListener("change", async () => {
 
 		table.style.display = "table";
 	} catch (err) {
-		errorDiv.textContent = err.message;
+		let msg = "Coś poszło nie tak...";
+
+		if (err.message.includes("503")) {
+			msg =
+				"OpenF1 API chwilowo niedostępne (kod 503) – spróbuj ponownie za 10–20 sekund";
+		} else if (err.message.includes("404")) {
+			msg = "Brak wyników dla tego wyścigu (jeszcze się nie odbył?)";
+		} else {
+			msg = `Błąd: ${err.message}`;
+		}
+
+		errorDiv.textContent = msg;
 		errorDiv.style.display = "block";
 		console.error(err);
 	} finally {
