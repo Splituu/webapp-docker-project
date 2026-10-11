@@ -1,3 +1,3 @@
-output "webapp_public_ip" {
-  value = aws_instance.webapp.public_ip
+output "webapp_eip" {
+  value = aws_eip.webapp_eip
 }

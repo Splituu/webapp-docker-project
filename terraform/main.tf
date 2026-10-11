@@ -29,6 +29,11 @@ resource "aws_security_group" "webapp_sg" {
   vpc_id      = data.aws_vpc.default.id
 }
 
+resource "aws_eip" "webapp_eip" {
+  instance = aws_instance.webapp.id
+  domain   = "vpc"
+}
+
 data "aws_vpc" "default" {
   default = true
 }
@@ -43,7 +48,7 @@ resource "aws_vpc_security_group_ingress_rule" "app_8080" {
 
 resource "aws_vpc_security_group_ingress_rule" "ssh_access" {
   security_group_id = aws_security_group.webapp_sg.id
-  cidr_ipv4         = var.my_ip
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
