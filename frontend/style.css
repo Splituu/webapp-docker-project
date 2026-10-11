@@ -1,145 +1,164 @@
 :root {
-  --f1-red:    #e10600;
-  --f1-dark:   #0f0f0f;
-  --f1-gray:   #1a1a1a;
-  --text:      #e0e0e0;
-  --text-light:#aaaaaa;
-  --border:    #333;
+	--f1-red: #e10600;
+	--f1-dark: #0f0f0f;
+	--f1-gray: #1a1a1a;
+	--text: #e0e0e0;
+	--text-light: #aaaaaa;
+	--border: #333;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  background: var(--f1-dark);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.6;
-  min-height: 100vh;
-  padding: 2rem 1rem;
+	background: var(--f1-dark);
+	color: var(--text);
+	font-family:
+		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	line-height: 1.6;
+	min-height: 100vh;
+	padding: 2rem 1rem;
 }
 
 .container {
-  max-width: 900px;
-  margin: 0 auto;
+	max-width: 900px;
+	margin: 0 auto;
 }
 
 header {
-  text-align: center;
-  margin-bottom: 2.5rem;
+	text-align: center;
+	margin-bottom: 2.5rem;
 }
 
 h1 {
-  font-size: 2.6rem;
-  color: var(--f1-red);
-  font-weight: 800;
-  letter-spacing: -1px;
+	font-size: 2.6rem;
+	color: var(--f1-red);
+	font-weight: 800;
+	letter-spacing: -1px;
 }
 
 h1 span {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  font-weight: 400;
-  display: block;
-  margin-top: 0.3rem;
+	font-size: 1.1rem;
+	color: var(--text-light);
+	font-weight: 400;
+	display: block;
+	margin-top: 0.3rem;
 }
 
 .select-wrapper {
-  text-align: center;
-  margin-bottom: 2.5rem;
+	text-align: center;
+	margin-bottom: 2.5rem;
 }
 
 label {
-  display: block;
-  font-size: 1.25rem;
-  margin-bottom: 0.9rem;
-  color: var(--text-light);
+	display: block;
+	font-size: 1.25rem;
+	margin-bottom: 0.9rem;
+	color: var(--text-light);
 }
 
 select {
-  width: 100%;
-  max-width: 520px;
-  padding: 1rem 1.2rem;
-  font-size: 1.1rem;
-  background: var(--f1-gray);
-  color: white;
-  border: 2px solid #444;
-  border-radius: 10px;
-  appearance: none;
-  cursor: pointer;
-  transition: all 0.2s;
+	width: 100%;
+	max-width: 520px;
+	padding: 1rem 1.2rem;
+	font-size: 1.1rem;
+	background: var(--f1-gray);
+	color: white;
+	border: 2px solid #444;
+	border-radius: 10px;
+	appearance: none;
+	cursor: pointer;
+	transition: all 0.2s;
 }
 
 select:focus {
-  outline: none;
-  border-color: var(--f1-red);
-  box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.25);
+	outline: none;
+	border-color: var(--f1-red);
+	box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.25);
 }
 
 .status {
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 1.3rem;
-  min-height: 100px;
+	text-align: center;
+	padding: 2rem 1rem;
+	font-size: 1.3rem;
+	min-height: 100px;
 }
 
 .error {
-  color: #ff6b6b;
+	color: #ff6b6b;
 }
 
 #results-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--f1-gray);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  display: none;
+	width: 100%;
+	border-collapse: collapse;
+	background: var(--f1-gray);
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+	display: none;
 }
 
-th, td {
-  padding: 1.1rem 1.4rem;
-  text-align: left;
+th,
+td {
+	padding: 1.1rem 1.4rem;
+	text-align: left;
 }
 
 th {
-  background: var(--f1-red);
-  color: white;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-  letter-spacing: 0.5px;
+	background: var(--f1-red);
+	color: white;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 0.95rem;
+	letter-spacing: 0.5px;
 }
 
 tr {
-  border-bottom: 1px solid var(--border);
-  transition: background 0.15s;
+	border-bottom: 1px solid var(--border);
+	transition: background 0.15s;
 }
 
 tr:hover {
-  background: #222;
+	background: #222;
 }
 
 .position {
-  width: 90px;
-  font-weight: bold;
-  color: #ffdd57;
-  font-size: 1.15rem;
+	width: 90px;
+	font-weight: bold;
+	color: #ffdd57;
+	font-size: 1.15rem;
 }
 
 footer {
-  text-align: center;
-  margin-top: 3.5rem;
-  color: #555;
-  font-size: 0.95rem;
+	text-align: center;
+	margin-top: 3.5rem;
+	color: #555;
+	font-size: 0.95rem;
 }
 
-/* responsywność */
+.status.error {
+	color: #ff6b6b;
+	font-weight: bold;
+	background: rgba(255, 107, 107, 0.1);
+	padding: 1rem;
+	border-radius: 8px;
+	margin: 1rem 0;
+}
+
 @media (max-width: 600px) {
-  h1 { font-size: 2.1rem; }
-  select { font-size: 1rem; padding: 0.9rem; }
-  th, td { padding: 0.9rem 1rem; font-size: 0.95rem; }
+	h1 {
+		font-size: 2.1rem;
+	}
+	select {
+		font-size: 1rem;
+		padding: 0.9rem;
+	}
+	th,
+	td {
+		padding: 0.9rem 1rem;
+		font-size: 0.95rem;
+	}
 }
