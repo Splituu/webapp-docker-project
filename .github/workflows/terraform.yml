@@ -1,0 +1,45 @@
+name: Terraform
+
+on:
+    workflow_dispatch:
+        inputs:
+            action:
+                description: "apply albo destroy"
+                type: choice
+                options:
+                    - apply
+                    - destroy
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+    terraform:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Login to AWS
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+                aws-region: eu-central-1
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3
+
+            - name: Terraform init
+              working-directory: terraform
+              run: terraform init
+
+            - name: Terraform apply
+              if: inputs.action == 'apply'
+              working-directory: terraform
+              run: terraform apply -auto-approve
+
+            - name: Terraform destroy
+              if: inputs.action == 'destroy'
+              working-directory: terraform
+              run: terraform destroy -auto-approve
