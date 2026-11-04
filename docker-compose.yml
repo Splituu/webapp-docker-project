@@ -1,12 +1,14 @@
 services:
   backend:
     build: ./backend
+    image: 876277755986.dkr.ecr.eu-central-1.amazonaws.com/demo-webapp-webapp-repo-backend:latest
     expose:
       - "8000"
     restart: unless-stopped
 
   frontend:
     build: ./frontend
+    image: 876277755986.dkr.ecr.eu-central-1.amazonaws.com/demo-webapp-webapp-repo-frontend:latest
     ports:
       - "8080:80"
     depends_on:
