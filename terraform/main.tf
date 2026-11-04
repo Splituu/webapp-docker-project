@@ -60,6 +60,24 @@ resource "aws_vpc_security_group_egress_rule" "all_out" {
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
+resource "aws_ecr_repository" "webapp_repo_backend" {
+  name                 = "${var.project}-webapp-repo-backend"
+  image_tag_mutability = "MUTABLE"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+  force_delete = true
+}
+
+resource "aws_ecr_repository" "webapp_repo_frontend" {
+  name                 = "${var.project}-webapp-repo-frontend"
+  image_tag_mutability = "MUTABLE"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+  force_delete = true
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
   owners      = ["099720109477"]
