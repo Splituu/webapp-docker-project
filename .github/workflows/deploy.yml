@@ -4,24 +4,48 @@ on:
     workflow_dispatch:
     push:
         branches: main
+
+permissions:
+    id-token: write
+    contents: read
     
 jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: Prepare SSH key
-              env:
-                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-                SSH_HOST: ${{ secrets.SSH_HOST }}
-              run: |
-                mkdir -p ~/.ssh
-                printf "%s\n" "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-                chmod 600 ~/.ssh/deploy_key
-                ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+          - name: Checkout code
+            uses: actions/checkout@v4
 
-            - name: Deploy over SSH
-              env:
-                SSH_USER: ${{ secrets.SSH_USER }}
-                SSH_HOST: ${{ secrets.SSH_HOST }}
-              run: |
-                ssh -i ~/.ssh/deploy_key $SSH_USER@$SSH_HOST "cd /opt/webapp && sudo git pull && sudo docker compose up -d --build"
+          - name: Login to Amazon AWS
+            uses: aws-actions/configure-aws-credentials@v4
+            with:
+              role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+              aws-region: eu-central-1
+
+          - name: Login to ECR
+            id: ecr
+            uses: aws-actions/amazon-ecr-login@v2
+
+          - name: Build and push Docker images
+            run: |
+              docker compose build
+              docker compose push
+
+          - name: Prepare SSH key
+            env:
+              SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+              SSH_HOST: ${{ secrets.SSH_HOST }}
+            run: |
+              mkdir -p ~/.ssh
+              printf "%s\n" "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+              chmod 600 ~/.ssh/deploy_key
+              ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+
+          - name: Deploy over SSH
+            env:
+              SSH_USER: ${{ secrets.SSH_USER }}
+              SSH_HOST: ${{ secrets.SSH_HOST }}
+              REGISTRY: ${{ steps.ecr.outputs.registry }}
+            run: |
+              aws ecr get-login-password | ssh -i ~/.ssh/deploy_key $SSH_USER@$SSH_HOST "sudo docker login --username AWS --password-stdin $REGISTRY"
+              ssh -i ~/.ssh/deploy_key $SSH_USER@$SSH_HOST "cd /opt/webapp && sudo git pull && sudo docker compose pull && sudo docker compose up -d"
